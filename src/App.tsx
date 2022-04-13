@@ -1,8 +1,7 @@
-import "./App.css";
+import "./css/App.scss";
 
 import {
   Avatar,
-  Button,
   Card,
   Col,
   Divider,
@@ -11,11 +10,16 @@ import {
   Space,
   Typography,
 } from "antd";
-import { GithubOutlined, InstagramOutlined } from "@ant-design/icons";
+import {
+  GithubOutlined,
+  InstagramOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
 import Beis from "./assets/beispiel.png";
 import Bix from "./assets/bix.png";
+import Dwb from "./assets/dwb.jpeg";
 import Graphs from "./Graphs";
 import Nachh from "./assets/Nachh.png";
 import Pb from "./assets/pb.png";
@@ -66,12 +70,13 @@ const data = [
     link: "https://github.com/BixConcept/dwb",
     desc: "Fortlaufend",
     author: c[0],
-    prevImg: "",
+    prevImg: Dwb,
   },
 ];
 
 const App = (): JSX.Element => {
   const [wW, setWW] = useState(0);
+
   let resizeWindow = () => {
     setWW(window.innerWidth);
   };
@@ -89,12 +94,13 @@ const App = (): JSX.Element => {
 
   return (
     <Layout className="App" style={{ textAlign: "center" }}>
-      <Header style={{ backgroundColor: grey[0] }}>
-        <Text>Moin</Text>
+      <Header style={{ backgroundColor: grey[7] }}>
+        <Text style={{ color: "white" }}>ayberk.xyz</Text>
       </Header>
       <Content>
-        <Divider />
-        <Title code>Projekte</Title>
+        <Title code style={{ marginTop: "1rem" }}>
+          Projekte
+        </Title>
         <Row style={{}} gutter={[24, 16]} justify="space-around">
           {data
             .sort((e, n) => {
@@ -136,17 +142,20 @@ const App = (): JSX.Element => {
         <Title code>Graphen</Title>
         <Graphs />
         <Divider />
-        <Button type="primary">Moin</Button>
       </Content>
-      <Footer>
+      <Footer style={{ backgroundColor: grey[7] }}>
         <Space>
           <Icon
             link="https://github.com/soysalayberk"
-            icon={<GithubOutlined />}
+            icon={<GithubOutlined style={{ color: "white" }} />}
           />
           <Icon
             link="https://instagram.com/soysalayberk__"
-            icon={<InstagramOutlined />}
+            icon={<InstagramOutlined style={{ color: "white" }} />}
+          />
+          <Icon
+            link="mailto:soysalayberk480@gmail.com"
+            icon={<MailOutlined style={{ color: "white" }} />}
           />
         </Space>
       </Footer>
