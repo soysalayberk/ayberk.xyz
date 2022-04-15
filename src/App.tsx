@@ -6,6 +6,7 @@ import {
   Col,
   Divider,
   Layout,
+  List,
   Row,
   Space,
   Typography,
@@ -13,6 +14,7 @@ import {
 import {
   GithubOutlined,
   InstagramOutlined,
+  LinkOutlined,
   MailOutlined,
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
@@ -22,6 +24,7 @@ import Bix from "./assets/bix.png";
 import Dwb from "./assets/dwb.jpeg";
 import Graphs from "./Graphs";
 import Nachh from "./assets/Nachh.png";
+import Nextcl from "./assets/nextcloud.png";
 import Pb from "./assets/pb.png";
 import Webs from "./assets/Website.png";
 import { grey } from "@ant-design/colors";
@@ -71,6 +74,14 @@ const data = [
     desc: "Fortlaufend",
     author: c[0],
     prevImg: Dwb,
+  },
+];
+
+const listData = [
+  {
+    title: "Nextcloud",
+    img: Nextcl,
+    url: "https://cloud.ayberk.xyz",
   },
 ];
 
@@ -139,9 +150,32 @@ const App = (): JSX.Element => {
             })}
         </Row>
         <Divider />
+        {/*
         <Title code>Graphen</Title>
         <Graphs />
         <Divider />
+          */}
+        <Title code>Dienste</Title>
+        <List
+          dataSource={listData}
+          bordered
+          itemLayout="vertical"
+          style={{ textAlign: "left" }}
+          size="small"
+          renderItem={(item) => (
+            <List.Item>
+              <List.Item.Meta
+                avatar={<Avatar src={item.img} />}
+                title={item.title}
+                description={
+                  <Link href={item.url}>
+                    Hier <Icon link={item.url} icon={<LinkOutlined />} />
+                  </Link>
+                }
+              />
+            </List.Item>
+          )}
+        ></List>
       </Content>
       <Footer style={{ backgroundColor: grey[7] }}>
         <Space>
