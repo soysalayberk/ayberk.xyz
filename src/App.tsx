@@ -11,13 +11,13 @@ import {
   Space,
   Typography,
 } from "antd";
+import { Fragment, useEffect, useState } from "react";
 import {
   GithubOutlined,
   InstagramOutlined,
   LinkOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import { useEffect, useState } from "react";
 
 import Beis from "./assets/beispiel.png";
 import Bix from "./assets/bix.png";
@@ -28,13 +28,18 @@ import Nextcl from "./assets/nextcloud.png";
 import Pb from "./assets/pb.png";
 import Webs from "./assets/Website.png";
 import { grey } from "@ant-design/colors";
+import js from "./assets/js.svg";
+import reac from "./assets/react.svg";
+import scss from "./assets/scss.svg";
+import sh from "./assets/sh.svg";
+import ts from "./assets/ts.svg";
 
 const { Title, Text, Link } = Typography;
 const { Header, Content, Footer } = Layout;
 
-const Icon = (props: { link: string; icon: any }): JSX.Element => {
+const Icon = (props: { link?: string; icon: any }): JSX.Element => {
   const { link, icon } = props;
-  return <Link href={link}>{icon}</Link>;
+  return link != null ? <Link href={link}>{icon}</Link> : <>{icon}</>;
 };
 
 const c = [
@@ -53,6 +58,7 @@ const data = [
     desc: "Jan. 2022 - Apr. 2022",
     author: c[0],
     prevImg: Nachh,
+    languages: [ts, reac, scss],
   },
   {
     title: "Website",
@@ -60,6 +66,7 @@ const data = [
     desc: "Fortlaufend",
     author: c[1],
     prevImg: Webs,
+    languages: [ts, reac, scss],
   },
   {
     title: "Dotfiles",
@@ -67,6 +74,7 @@ const data = [
     desc: "Fortlaufend",
     author: c[1],
     prevImg: Beis,
+    languages: [sh],
   },
   {
     title: "dwb",
@@ -74,6 +82,7 @@ const data = [
     desc: "Fortlaufend",
     author: c[0],
     prevImg: Dwb,
+    languages: [js, reac, scss],
   },
 ];
 
@@ -121,7 +130,6 @@ const App = (): JSX.Element => {
               return (
                 <Col span={getColumns()} key={project.title}>
                   <Card
-                    style={{ width: "100%" }}
                     cover={
                       <div style={{ overflow: "hidden", height: "200px" }}>
                         <img
@@ -134,10 +142,17 @@ const App = (): JSX.Element => {
                     actions={[
                       <Icon link={project.link} icon={<GithubOutlined />} />,
                     ]}
+                    extra={
+                      <Space>
+                        {project.languages.map((lang) => {
+                          return <img src={lang} alt={lang} width="20px" />;
+                        })}
+                      </Space>
+                    }
+                    title={project.title}
                   >
                     <Card.Meta
-                      title={project.title}
-                      description={project.desc}
+                      description={<Fragment>{project.desc}</Fragment>}
                       avatar={
                         <Link href={project.author.gh}>
                           <Avatar src={project.author.img} />
@@ -169,7 +184,7 @@ const App = (): JSX.Element => {
                 title={item.title}
                 description={
                   <Link href={item.url}>
-                    Hier <Icon link={item.url} icon={<LinkOutlined />} />
+                    Hier <Icon icon={<LinkOutlined />} />
                   </Link>
                 }
               />
@@ -177,7 +192,14 @@ const App = (): JSX.Element => {
           )}
         ></List>
       </Content>
-      <Footer style={{ backgroundColor: grey[7] }}>
+      <Footer
+        style={{
+          backgroundColor: grey[7],
+          height: "auto",
+          bottom: 0,
+          marginTop: "10%",
+        }}
+      >
         <Space>
           <Icon
             link="https://github.com/soysalayberk"
