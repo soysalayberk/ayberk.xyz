@@ -39,7 +39,13 @@ const { Header, Content, Footer } = Layout;
 
 const Icon = (props: { link?: string; icon: any }): JSX.Element => {
   const { link, icon } = props;
-  return link != null ? <Link href={link}>{icon}</Link> : <>{icon}</>;
+  return link != null ? (
+    <Link href={link} style={{ color: "white" }}>
+      {icon}
+    </Link>
+  ) : (
+    <>{icon}</>
+  );
 };
 
 const c = [
@@ -107,9 +113,9 @@ const App = (): JSX.Element => {
   }, []);
 
   const getColumns = () => {
-    if (window.innerWidth > 1100) return 8;
-    if (window.innerWidth < 700) return 24;
-    if (window.innerWidth < 1100) return 12;
+    if (window.innerWidth > 1200) return 8;
+    if (window.innerWidth < 800) return 24;
+    if (window.innerWidth < 1200) return 12;
   };
 
   return (
@@ -150,9 +156,13 @@ const App = (): JSX.Element => {
                       </Space>
                     }
                     title={project.title}
+                    style={{
+                      border: "2px solid white",
+                      padding: "0.1rem",
+                    }}
                   >
                     <Card.Meta
-                      description={<Fragment>{project.desc}</Fragment>}
+                      description={<Text>{project.desc}</Text>}
                       avatar={
                         <Link href={project.author.gh}>
                           <Avatar src={project.author.img} />
@@ -203,15 +213,15 @@ const App = (): JSX.Element => {
         <Space>
           <Icon
             link="https://github.com/soysalayberk"
-            icon={<GithubOutlined style={{ color: "white" }} />}
+            icon={<GithubOutlined />}
           />
           <Icon
             link="https://instagram.com/soysalayberk__"
-            icon={<InstagramOutlined style={{ color: "white" }} />}
+            icon={<InstagramOutlined />}
           />
           <Icon
             link="mailto:soysalayberk480@gmail.com"
-            icon={<MailOutlined style={{ color: "white" }} />}
+            icon={<MailOutlined />}
           />
         </Space>
       </Footer>
