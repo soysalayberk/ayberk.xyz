@@ -174,7 +174,7 @@ const App = (): JSX.Element => {
               );
             })}
         </Row>
-        <Divider />
+        <Divider style={{ background: "white" }} />
         {/*
         <Title code>Graphen</Title>
         <Graphs />
@@ -185,7 +185,7 @@ const App = (): JSX.Element => {
           dataSource={listData}
           bordered
           itemLayout="vertical"
-          style={{ textAlign: "left" }}
+          style={{ textAlign: "left", borderColor: "white" }}
           size="small"
           renderItem={(item) => (
             <List.Item>
